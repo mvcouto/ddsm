@@ -286,7 +286,8 @@ def main
   # File.delete(ljpeg_file)
 
   # Now convert the PNM file to PNG and delete the PNG file.
-  target_png_file = image_name + '.png'
+  # target_png_file = image_name + '.png'
+  target_png_file = File.dirname(ljpeg_file) + "/" + image_name + ".png"
   png_file = pnm_to_png(pnm_file, target_png_file)
   File.delete(pnm_file)
 
