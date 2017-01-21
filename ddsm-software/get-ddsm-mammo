@@ -15,7 +15,8 @@ end
 # Get an FTP file as specified by a DDSM path (e.g.,
 # /pub/DDSM/cases/cancers/cancer_06/case1141/A-1141-1.ics) and return the
 # local path to the file, or return nil if the file could not be dowloaded.
-def get_file_via_ftp(ddsm_path)
+def get_file_via_ftp_original(ddsm_path)
+
   ftp = Net::FTP.new('figment.csee.usf.edu')
   ftp.login
   ftp.getbinaryfile(ddsm_path)
@@ -28,6 +29,12 @@ def get_file_via_ftp(ddsm_path)
   end
   
   return File.basename(ddsm_path)
+end
+
+
+# Since I already have the files, I'll just point the script there:
+def get_file_via_ftp(ddsm_path)
+  return "/home/daniel/data/figment.csee.usf.edu" + ddsm_path
 end
 
 
@@ -165,7 +172,7 @@ def do_get_image_info(image_name)
   image_dims_and_digitizer = get_image_dims_and_digitizer(image_name, ics_file)
 
   # Remove the .ics file as we don't need it any more.
-  File.delete(ics_file)
+  # File.delete(ics_file)
 
   return image_dims_and_digitizer
 end
@@ -224,7 +231,7 @@ end
 # file.
 def ljpeg_to_pnm(ljpeg_file, dims_and_digitizer)
   # First convert it to raw format.
-  command = "./jpeg.exe -d -s #{ljpeg_file}"
+  command = "./jpeg -d -s #{ljpeg_file}"
   `#{command}` # Run it.
   raw_file = ljpeg_file + '.1' # The jpeg program adds a .1 suffix.
   
@@ -234,7 +241,7 @@ def ljpeg_to_pnm(ljpeg_file, dims_and_digitizer)
   end
 
   # Now convert the raw file to PNM and delete the raw file.
-  command = "./ddsmraw2pnm.exe #{raw_file} #{dims_and_digitizer}"
+  command = "./ddsmraw2pnm #{raw_file} #{dims_and_digitizer}"
   pnm_file = `#{command}`
   File.delete(raw_file)
   if $? != 0
@@ -276,7 +283,7 @@ def main
   
   # Convert the LJPEG file to PNM and delete the original LJPEG.
   pnm_file = ljpeg_to_pnm(ljpeg_file, image_info)
-  File.delete(ljpeg_file)
+  # File.delete(ljpeg_file)
 
   # Now convert the PNM file to PNG and delete the PNG file.
   target_png_file = image_name + '.png'
