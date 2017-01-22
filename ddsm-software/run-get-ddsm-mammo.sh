@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-for fullfile in `find ~/data/figment.csee.usf.edu/ -name "*LJPEG"`; do
+for fullfile in `find /ddsm_data -name "*LJPEG"`; do
     filename=$(basename "$fullfile");
     filename="${filename%.*}";
     echo $filename;

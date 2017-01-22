@@ -34,7 +34,7 @@ end
 
 # Since I already have the files, I'll just point the script there:
 def get_file_via_ftp(ddsm_path)
-  return "/home/daniel/data/figment.csee.usf.edu" + ddsm_path
+  return "/ddsm_data" + ddsm_path
 end
 
 
