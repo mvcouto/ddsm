@@ -8,7 +8,6 @@ RUN apt-get install -qy  git ruby
 
 COPY scripts/*.sh /
 
-VOLUME /ddsm_data
 
 
 
