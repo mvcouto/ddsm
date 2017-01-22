@@ -4,5 +4,7 @@
 
 cd /ddsm/ddsm-software
 
+echo 'transforming LJPEG files'
 ./run-get-ddsm-mammo.sh
+echo 'completed transformation'
 
