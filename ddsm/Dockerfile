@@ -8,6 +8,8 @@ RUN apt-get install -qy  git ruby g++ imagemagick
 
 COPY scripts/*.sh /
 
+CMD ["./go.sh"]
+
 
 
 

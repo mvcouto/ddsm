@@ -98,3 +98,31 @@ The `get_ddsm_groundtruth.m` code returns a cell array of structs, which can be 
 Apart from the data and this software now being very old, the weakest link in the workflow is the DDSM’s FTP server, which may permit a limited number of users to access the server at any given time.
 
 The `get-ddsm-mammo` program should be quite robust, with the exception of its reliance on the DDSM’s FTP server. If you experience problems using it, please try connecting to the DDSM’s FTP server using your FTP client, to see if this is the cause of the problem.
+
+## Dockerisation
+
+There is a docker version of this repo that will transform all the images 
+to png.
+
+### Preparation - obtain the data
+
+Use the included ftp_all.sh command (or similar) to do the download. 
+The results will form a tree starting with the USF hostname. Use this directory as 
+a parameter to the docker conversions image instead of <USF_TREE>
+
+### Invoke the docker image from dockerhub
+
+```
+docker run -v <USF_TREE>:/ddsm_data topiaruss/ddsmtopng
+```
+
+Alongside the LJPEG images in the tree the png equivalent will be created.
+
+Note that the PNG files are roughly double the size of the originals, 
+so your data will grow to 3x the size once processing is complete.  
+At this point you have the option to delete the originals:
+
+```bash
+find <USF_TREE> -name "*LJPEG" -delete
+
+```
