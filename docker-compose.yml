@@ -2,7 +2,7 @@ version: '3'
 services:
   ddsm:
     build: ./ddsm
-    container_name: ddsmtopng
+    container_name: ddsm
     volumes:
       - /Users/russ/DBT/DDSM/figment.csee.usf.edu.shard:/ddsm_data
     command: /bin/bash ./go.sh

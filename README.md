@@ -113,7 +113,7 @@ a parameter to the docker conversions image instead of <USF_TREE>
 ### Invoke the docker image from dockerhub
 
 ```
-docker run -v <USF_TREE>:/ddsm_data topiaruss/ddsmtopng
+docker run -v <USF_TREE>:/ddsm_data topiaruss/ddsm
 ```
 
 Alongside the LJPEG images in the tree the png equivalent will be created.
