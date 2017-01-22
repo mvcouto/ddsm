@@ -3,6 +3,6 @@ services:
   ddsm:
     build: ./ddsm
     volumes:
-      - /Users/russ/DBT/DREAM/figment.csee.usf.edu/shard:/ddsm_data
+      - /Users/russ/DBT/DREAM/figment.csee.usf.edu.shard:/ddsm_data
     command: /bin/bash ./go.sh
 
