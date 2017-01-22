@@ -4,7 +4,7 @@
 
 cd /ddsm/ddsm-software
 
-g++ -Wall -O2 ddsmraw2pnm.c -o ddsmraw2pnm
+g++ -w -O2 ddsmraw2pnm.c -o ddsmraw2pnm
 
 echo 'transforming LJPEG files'
 time ./run-get-ddsm-mammo.sh
